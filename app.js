@@ -6,12 +6,14 @@ const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const petRoutes = require('./routes/petRoutes');
 const journalRoutes = require('./routes/journalRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static('public'));
 app.use(session({
   secret: process.env.SESSION_SECRET || 'development-session-secret-change-me',
@@ -24,5 +26,6 @@ app.use('/', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/', petRoutes);
 app.use('/', journalRoutes);
+app.use('/payments', paymentRoutes);
 
 app.listen(PORT, () => console.log(`App running on http://localhost:${PORT}`));
