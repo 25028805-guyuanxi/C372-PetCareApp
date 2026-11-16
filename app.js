@@ -7,6 +7,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const petRoutes = require('./routes/petRoutes');
 const journalRoutes = require('./routes/journalRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,5 +28,6 @@ app.use('/admin', adminRoutes);
 app.use('/', petRoutes);
 app.use('/', journalRoutes);
 app.use('/payments', paymentRoutes);
+app.use('/', bookingRoutes);
 
 app.listen(PORT, () => console.log(`App running on http://localhost:${PORT}`));
