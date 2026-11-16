@@ -2,7 +2,7 @@ const petModel = require('../models/petModel');
 const serviceModel = require('../models/serviceModel');
 const bookingModel = require('../models/bookingModel');
 const validId = (value) => /^\d+$/.test(String(value)) && Number(value) > 0;
-function validDate(value) { const today = new Date(); today.setHours(0, 0, 0, 0); const date = new Date(`${value}T00:00:00`); return /^\d{4}-\d{2}-\d{2}$/.test(value || '') && !Number.isNaN(date) && date.toISOString().slice(0, 10) === value && date >= today; }
+function validDate(value) { const today = new Date(); today.setHours(0, 0, 0, 0); const date = new Date(`${value}T00:00:00`); return /^\d{4}-\d{2}-\d{2}$/.test(value || '') && !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value && date >= today; }
 
 function showServices(req, res) {
   serviceModel.findActive((serviceError, services) => {
